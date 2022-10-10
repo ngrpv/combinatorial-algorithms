@@ -7,7 +7,7 @@ def get_next_and_previous_lists(n: int, matrix: list[list[int]]) -> (
     prev = [[] for _ in range(n)]
     for i in range(n):
         for j in range(n):
-            if matrix[i][j] != 0:
+            if matrix[i][j] != -32768:
                 next[i].append(j)
                 prev[j].append(i)
     return next, prev
