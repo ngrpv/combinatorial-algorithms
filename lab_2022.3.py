@@ -1,16 +1,17 @@
 def read_inp_list():
-    n = int(input())
-    input_arr = []
-    cur_inp = [int(i) for i in input().split()]
-    i = 0
-    while cur_inp[i] != 32767:
-        input_arr.append(cur_inp[i])
-        i += 1
-        if i == 10:
-            cur_inp = [int(i) for i in input().split()]
-            i = 0
-    input_arr.append(32767)
-    return input_arr
+    with open('in.txt', 'r') as f:
+        n = int(f.readline())
+        input_arr = []
+        cur_inp = [int(i) for i in f.readline().split()]
+        i = 0
+        while cur_inp[i] != 32767:
+            input_arr.append(cur_inp[i])
+            i += 1
+            if i == 10:
+                cur_inp = [int(i) for i in f.readline().split()]
+                i = 0
+        input_arr.append(32767)
+        return input_arr
 
 
 def b_k_alg(w_start_end_arr, n):
@@ -51,7 +52,9 @@ for i in range(inp_arr[0]):
         added.add((i + 1, inp_arr[j]))
 
 result, w = b_k_alg(w_start_end_arr, inp_arr[0] - 2)
-
-for k in range(inp_arr[0] - 2):
-    print(' '.join(map(lambda x: str(x + 1), sorted(result[k]))), 0)
-print(w)
+with open('out.txt', 'w') as f:
+    for k in range(inp_arr[0] - 2):
+        f.write(' '.join(map(lambda x: str(x + 1), sorted(result[k]))) + ' 0\n')
+        # print(' '.join(map(lambda x: str(x + 1), sorted(result[k]))), 0)
+    f.write(str(w))
+    # print(w)
