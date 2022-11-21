@@ -32,6 +32,7 @@ def get_path(s, t, graph):
             if j == t:
                 return path + [t]
             queue.append((j, path + [j]))
+            visited.append(j)
 
 
 def get_min_c(path, graph):
